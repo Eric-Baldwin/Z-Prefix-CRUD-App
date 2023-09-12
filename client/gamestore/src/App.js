@@ -5,6 +5,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import SignInSide from './components/SignInSide';
 
 function Home() {
     return <h2>Home</h2>;
@@ -33,6 +34,9 @@ function App() {
                         <li>
                             <Link to="/item-details">Item Details</Link>
                         </li>
+                        <li>
+                            <Link to="/signin">Sign In</Link>
+                        </li>
                     </ul>
                 </nav>
 
@@ -40,6 +44,7 @@ function App() {
                     <Route path="/item-details" element={<ItemDetails />} />
                     <Route path="/inventory" element={<Inventory />} />
                     <Route path="/" element={<Home />} />
+                    <Route path="/signin" element={<SignInSide />} />
                 </Routes>
             </div>
         </Router>
