@@ -25,7 +25,6 @@ export default function NavBar() {
               <CasinoTwoToneIcon sx={{ mr: 1 }} />Baldwin's Board Games
             </Button>
           </Box>
-          <Button color="inherit" component={Link} to="/sign-in">Sign-In</Button>
         </Toolbar>
       </AppBar>
     </Box>

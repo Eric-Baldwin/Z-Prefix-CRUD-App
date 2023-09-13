@@ -5,26 +5,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
+import NavBarSignInUp from './NavBarSignInUp';
+import signUp from './SignUp';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 
@@ -33,19 +24,20 @@ export default function SignInSide() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      email: data.get('username'),
       password: data.get('password'),
     });
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <NavBarSignInUp />
+      <Grid container>
         <CssBaseline />
         <Grid
           item
           xs={false}
-          sm={4}
+          sm={1}
           md={7}
           sx={{
             backgroundImage: 'url(https://fuzzyllamareviewscom.files.wordpress.com/2020/01/15.jpg?w=1024)',
@@ -66,7 +58,7 @@ export default function SignInSide() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: 'green' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -77,10 +69,10 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
                 autoFocus
               />
               <TextField
@@ -93,10 +85,6 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -105,23 +93,56 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              <Box
+                sx={{
+                  my: 4,
+                  mx: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                Don't have an account?
+                <Button
+                  type="submit"
+                  variant="contained"
+                  bgcolor="grey"
+                  sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/sign-up`}>
+                  Sign Up
+                </Button>
+              </Box>
+              <Box sx={{ bgcolor: 'background.paper', p: 4 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+          Keep on Rollin'!
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+          There are only three forms of high art: the symphony, the illustrated children’s book and the board game. – Brian K. Vaughan.
+        </Typography>
+        <Copyright />
+      </Box>
             </Box>
           </Box>
         </Grid>
       </Grid>
+
     </ThemeProvider>
+  );
+}
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
+        Baldwin's Board Games
+      </a>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }

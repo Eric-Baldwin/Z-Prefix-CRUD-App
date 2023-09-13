@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,33 +10,27 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NavBar from './NavBar';
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Album() {
+export default function ItemDetails() {
+  const { id } = useParams();
+  const [item, setItem] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from the given API endpoint
+    fetch(`http://localhost:3000/api/items/${id}`)
+      .then(response => response.json())
+      .then(data => setItem(data))
+      .catch(error => console.error('Error fetching item details:', error));
+  }, [id]);
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -44,7 +38,6 @@ export default function Album() {
         <NavBar />
       </AppBar>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: 'background.paper',
@@ -60,12 +53,13 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              Item Details
+              Item Details for: <br />
+              <span style={{ color: 'purple' }}>{item ? item.item_name : 'Loading...'}</span>
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Something short and leading about the collection below—its contents,
-              the creator, etc. Make it short and sweet, but not too short so folks
-              don&apos;t simply skip over it entirely.
+              {item ? item.description : 'Loading description...'}
+            </Typography>
+            <Typography variant="h6" align="center" color="aqua" paragraph>Item Quantity: {item ? item.quantity : 'Loading description...'}
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -73,50 +67,27 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button type="submit"
+                variant="contained"
+                bgcolor="green"
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory`}>
+                Return to Game Inventory
+              </Button>
+              <Button type="submit"
+                variant="contained"
+                bgcolor="orange"
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Edit</Button>
+              <Button type="submit"
+                variant="contained"
+                bgcolor="red"
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Remove</Button>
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random?wallpapers"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
       </main>
-      {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          Keep on Rollin'!
         </Typography>
         <Typography
           variant="subtitle1"
@@ -124,11 +95,23 @@ export default function Album() {
           color="text.secondary"
           component="p"
         >
-          Something here to give the footer a purpose!
+          There are only three forms of high art: the symphony, the illustrated children’s book and the board game. – Brian K. Vaughan.
         </Typography>
         <Copyright />
       </Box>
-      {/* End footer */}
     </ThemeProvider>
+  );
+}
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
+      Baldwin's Board Games
+      </a>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }

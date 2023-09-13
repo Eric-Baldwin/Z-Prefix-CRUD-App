@@ -40,7 +40,7 @@ Navigate to the Frontend (client) React-App (gamestore) directory:
 
 Install the necessary dependencies:
 - npm install
-- npm install @mui/material @mui/icons-material
+- npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
 
 Start the Frontend in the "gamestore" directory:
 - npm start
