@@ -88,7 +88,7 @@ export default function Inventory() {
             {items.map((item) => (
               <Grid item key={item.id} xs={12} sm={6} md={4}>
                 <Card
-                  sx={{ backgroundColor: "darkgrey", height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  sx={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <CardContent sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography gutterBottom color="purple" variant="h5" component="h2" align="center">
                       {item.item_name}
