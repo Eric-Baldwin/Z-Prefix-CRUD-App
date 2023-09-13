@@ -9,13 +9,13 @@ const handleResponse = async (response) => {
 };
 
 const userAPI = {
-  fetchAll: () => fetch(`${BASE_URL}/users`).then(handleResponse),
-  fetchById: (id) => fetch(`${BASE_URL}/users/${id}`).then(handleResponse),
+  fetchAll: () => fetch(`${BASE_URL}/api/users`).then(handleResponse),
+  fetchById: (id) => fetch(`${BASE_URL}/api/users/${id}`).then(handleResponse),
   create: (userData) =>
     fetch(`${BASE_URL}/users`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
     }).then(handleResponse),
   update: (id, updatedData) =>
     fetch(`${BASE_URL}/users/${id}`, {

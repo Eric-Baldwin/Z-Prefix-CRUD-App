@@ -36,91 +36,98 @@ export default function Inventory() {
         <NavBar />
       </AppBar>
       <main>
-      <Box
+        <Box
           sx={{
             backgroundImage: 'url(https://cdn.luxatic.com/wp-content/uploads/2014/08/Geek-Chic-Luxury-Board-Game-Tables-1.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}>
-        <Box
-          sx={{
-            bgcolor: 'rgba(0, 0, 0, 0.7)',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Game Inventory
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              These are my games.
-            </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <Button
-                type="submit"
-                variant="contained"
-                bgcolor="purple"
-                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }}
+          <Box
+            sx={{
+              bgcolor: 'rgba(0, 0, 0, 0.7)',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="White"
+                gutterBottom
               >
-                Add New Game
-              </Button>
-            </Box>
+                Game Inventory
+              </Typography>
+              <Typography variant="h5" align="center" color="grey" paragraph>
+                These are my games.
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    mt: 2,
+                    mb: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    backgroundColor: 'blue',
+                  }}
+                  component={Link}
+                  to={`/inventory`}
+                >
+                  Add New Game
+                </Button>
+              </Box>
+            </Container>
+          </Box>
+          <Container sx={{ py: 2, bgcolor: 'rgba(0, 0, 0, 0.7)' }} maxWidth="">
+            <Grid container spacing={4}>
+              {items.map((item) => (
+                <Grid item key={item.id} xs={12} sm={6} md={4}>
+                  <Card
+                    sx={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Typography gutterBottom color="magenta" variant="h5" component="h2" align="center">
+                        {item.item_name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button type="submit"
+                        variant="contained"
+                        bgcolor="green"
+                        sx={{ mt: 2, mb: 1, backgroundColor: 'green', marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory/item-details/${item.id}`}>
+                        View Details
+                      </Button>
+                      <Button type="submit"
+                        variant="contained"
+                        bgcolor="red"
+                        sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }} size="small">Remove</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
           </Container>
         </Box>
-        <Container sx={{ py: 2, bgcolor: 'rgba(0, 0, 0, 0.7)'}} maxWidth="">
-          <Grid container spacing={4}>
-            {items.map((item) => (
-              <Grid item key={item.id} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <CardContent sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography gutterBottom color="purple" variant="h5" component="h2" align="center">
-                      {item.item_name}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button type="submit"
-                      variant="contained"
-                      bgcolor="green"
-                      sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory/item-details/${item.id}`}>
-                      View Details
-                    </Button>
-                    <Button type="submit"
-                      variant="contained"
-                      bgcolor="red"
-                      sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Remove</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-        </Box>
       </main>
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
+      <Box sx={{ bgcolor: 'black', p: 6 }} component="footer">
+        <Typography variant="h6" color="white" align="center" gutterBottom>
           Keep on Rollin'!
         </Typography>
         <Typography
           variant="subtitle1"
           align="center"
-          color="text.secondary"
+          color="white"
           component="p"
         >
           There are only three forms of high art: the symphony, the illustrated children’s book and the board game. – Brian K. Vaughan.
@@ -133,10 +140,10 @@ export default function Inventory() {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {'Copyright © '}
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
-      Baldwin's Board Games
+        Baldwin's Board Games
       </a>{' '}
       {new Date().getFullYear()}
       {'.'}

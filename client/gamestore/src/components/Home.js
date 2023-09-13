@@ -21,7 +21,6 @@ import Inventory from './Inventory';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Home() {
@@ -54,12 +53,12 @@ export default function Home() {
                   component="h1"
                   variant="h2"
                   align="center"
-                  color="text.primary"
+                  color="white"
                   gutterBottom
                 >
                   Eric Baldwin's<br></br>Z-Prefix CRUD App!
                 </Typography>
-                <Typography variant="h5" align="center" color="text.secondary" paragraph>
+                <Typography variant="h5" align="center" color="grey" paragraph>
                   Please browse some of my games. <br></br> Sign in to manage the game inventory.</Typography>
                 <Stack
                   sx={{ pt: 4 }}
@@ -67,24 +66,35 @@ export default function Home() {
                   spacing={2}
                   justifyContent="center"
                 >
-                  <Button type="submit"
-                variant="contained"
-                bgcolor="green"
-                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory`}>Game Inventory</Button>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      mt: 2,
+                      mb: 1,
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      backgroundColor: 'green',
+                    }}
+                    component={Link}
+                    to={`/inventory`}
+                  >
+                    Game Inventory
+                  </Button>
                 </Stack>
               </Container>
             </Box>
           </Box>
         </Box>
       </main>
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
+      <Box sx={{ bgcolor: 'black', p: 6 }} component="footer">
+        <Typography variant="h6" color="white" align="center" gutterBottom>
           Keep on Rollin'!
         </Typography>
         <Typography
           variant="subtitle1"
           align="center"
-          color="text.secondary"
+          color="white"
           component="p"
         >
           There are only three forms of high art: the symphony, the illustrated children’s book and the board game. – Brian K. Vaughan.
@@ -97,10 +107,10 @@ export default function Home() {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {'Copyright © '}
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
-      Baldwin's Board Games
+        Baldwin's Board Games
       </a>{' '}
       {new Date().getFullYear()}
       {'.'}

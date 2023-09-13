@@ -60,14 +60,14 @@ export default function ItemDetails() {
               component="h1"
               variant="h2"
               align="center"
-              color="text.primary"
+              color="White"
               gutterBottom
             >
               Item Details for: <br />
-              <span style={{ color: 'purple' }}>{item ? item.item_name : 'Loading...'}</span>
+              <span style={{ color: 'magenta' }}>{item ? item.item_name : 'Loading...'}</span>
             </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              {item ? item.description : 'Loading description...'}
+            <Typography variant="h5" align="center" color="grey" paragraph>
+            Description: {item ? item.description : 'Loading description...'}
             </Typography>
             <Typography variant="h6" align="center" color="aqua" paragraph>Item Quantity: {item ? item.quantity : 'Loading description...'}
             </Typography>
@@ -80,31 +80,31 @@ export default function ItemDetails() {
               <Button type="submit"
                 variant="contained"
                 bgcolor="green"
-                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory`}>
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'green', marginRight: 'auto' }} component={Link} to={`/inventory`}>
                 Return to Game Inventory
               </Button>
               <Button type="submit"
                 variant="contained"
                 bgcolor="orange"
-                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Edit</Button>
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'darkorange', marginRight: 'auto' }} size="small">Edit</Button>
               <Button type="submit"
                 variant="contained"
                 bgcolor="red"
-                sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Remove</Button>
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }} size="small">Remove</Button>
             </Stack>
           </Container>
         </Box>
         </Box>
         </Box>
       </main>
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
+      <Box sx={{ bgcolor: 'black', p: 6 }} component="footer">
+        <Typography variant="h6" color= "white" align="center" gutterBottom>
           Keep on Rollin'!
         </Typography>
         <Typography
           variant="subtitle1"
           align="center"
-          color="text.secondary"
+          color="white"
           component="p"
         >
           There are only three forms of high art: the symphony, the illustrated children’s book and the board game. – Brian K. Vaughan.
@@ -117,7 +117,7 @@ export default function ItemDetails() {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {'Copyright © '}
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
       Baldwin's Board Games

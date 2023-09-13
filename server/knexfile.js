@@ -8,7 +8,7 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      host: '127.0.0.1',
+      host: 'localhost',
       database: 'gamestore_db',
       user: 'postgres',
       password: 'password'

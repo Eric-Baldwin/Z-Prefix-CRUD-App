@@ -3,10 +3,11 @@ const knex = require('../knexConnection');
 module.exports = {
 
     createUser: async (req, res) => {
+        console.log("Request body:", req.body);
         try {
             const newUser = {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
                 username: req.body.username,
                 password: req.body.password
             };
@@ -17,6 +18,7 @@ module.exports = {
             res.status(500).json({ message: error.message });
         }
     },
+
 
     getAllUsers: async (req, res) => {
         try {
