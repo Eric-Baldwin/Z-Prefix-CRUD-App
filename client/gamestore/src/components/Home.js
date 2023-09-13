@@ -46,7 +46,7 @@ export default function Home() {
               sx={{
                 bgcolor: 'rgba(0, 0, 0, 0.7)',
                 pt: 8,
-                pb: 22,
+                pb: 30,
               }}
             >
               <Container maxWidth="sm">

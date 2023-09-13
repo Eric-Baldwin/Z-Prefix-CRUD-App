@@ -38,13 +38,23 @@ export default function ItemDetails() {
         <NavBar />
       </AppBar>
       <main>
-        <Box
+      <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
+            backgroundImage: 'url(https://cdn.luxatic.com/wp-content/uploads/2014/08/Geek-Chic-Luxury-Board-Game-Tables-1.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}>
+          <Box container component="main" sx={{ height: '69vh' }}>
+            <Box
+              sx={{
+                bgcolor: 'rgba(0, 0, 0, 0.7)',
+                pt: 8,
+                pb: 30,
+              }}
+            >
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -83,6 +93,8 @@ export default function ItemDetails() {
                 sx={{ mt: 2, mb: 1, marginLeft: 'auto', marginRight: 'auto' }} size="small">Remove</Button>
             </Stack>
           </Container>
+        </Box>
+        </Box>
         </Box>
       </main>
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
