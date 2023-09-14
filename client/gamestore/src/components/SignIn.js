@@ -11,6 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NavBarSignInUp from './NavBarSignInUp';
+import { useNavigate } from 'react-router-dom';
+
 
 const defaultTheme = createTheme();
 
@@ -18,23 +20,26 @@ export default function SignIn() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3000/api/users');
-      const users = await response.json();
+  const navigate = useNavigate();
 
-      const user = users.find(u => u.username === username && u.password === password);
+ const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch('http://localhost:3000/api/users');
+    const users = await response.json();
 
-      if (user) {
-        console.log('User authenticated successfully:', user);
-      } else {
-        console.error('Invalid username or password.');
-      }
-    } catch (error) {
-      console.error("There was an error fetching the users:", error);
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+      console.log('User authenticated successfully:', user);
+      navigate('/Mgmt');
+    } else {
+      alert('Invalid username or password.');
     }
-  };
+  } catch (error) {
+    console.error("There was an error fetching the users:", error);
+  }
+};
 
   return (
     <ThemeProvider theme={defaultTheme}>

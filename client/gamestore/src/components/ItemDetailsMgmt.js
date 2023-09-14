@@ -24,7 +24,6 @@ export default function ItemDetails() {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    // Fetch data from the given API endpoint
     fetch(`http://localhost:3000/api/items/${id}`)
       .then(response => response.json())
       .then(data => setItem(data))

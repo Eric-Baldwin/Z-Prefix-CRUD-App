@@ -3,21 +3,11 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
-import SignIn from './SignIn';
+import Typography from '@mui/material/Typography';  // Make sure to import Typography
+import { Link } from 'react-router-dom';
 import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
 
 export default function NavBar() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    // Hypothetically clearing JWT token or user session data
-    localStorage.removeItem('token');
-
-    // Redirecting to the home page or any other page after logout
-    navigate('/');
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'maroon' }}>
@@ -32,10 +22,16 @@ export default function NavBar() {
                 textTransform: "none",
                 alignItems: 'center'
               }}>
-              <CasinoTwoToneIcon sx={{ mr: 1 }} />Baldwin's Board Games
+              <CasinoTwoToneIcon sx={{ mr: 1 }} />
+              Baldwin's Board Games
             </Button>
           </Box>
-          <Button color="inherit" onClick={handleLogout}>Log Out</Button>
+          <CasinoTwoToneIcon sx={{ mr: 2 }} />
+          <Typography variant="h6" component="div" sx={{ marginRight: "16px" }}>
+            Inventory Manager
+          </Typography>
+          <CasinoTwoToneIcon sx={{ mr: 4 }} />
+          <Button color="inherit" component={Link} to="/">Log Out</Button>
         </Toolbar>
       </AppBar>
     </Box>

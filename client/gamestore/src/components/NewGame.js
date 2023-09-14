@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import NavBar from './NavBar';
+import NavBarLogOut from './NavBarLogOut';
 import { useState } from 'react';
 import { itemAPI } from '../api.js';
 import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
@@ -41,7 +41,7 @@ export default function NewGame() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <NavBar />
+      <NavBarLogOut />
       <Box component="main" sx={{ height: '69vh' }}>
         <Grid container>
           <CssBaseline />

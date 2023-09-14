@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import NewGame from './components/NewGame';
 import InventoryMgmt from './components/InventoryMgmt';
 import ItemDetailsMgmt from './components/ItemDetailsMgmt';
+import HomeMgmt from './components/HomeMgmt';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/inventory/item-details/:id" element={<ItemDetails />} />
                     <Route path="/inventory/item-details-mgmt/:id" element={<ItemDetailsMgmt />} />
                     <Route path="/" element={<Home />} />
+                    <Route path="/Mgmt" element={<HomeMgmt />} />
                     <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/new-game" element={<NewGame />} />
