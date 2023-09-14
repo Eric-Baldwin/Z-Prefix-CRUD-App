@@ -5,7 +5,6 @@ module.exports = {
     createItem: async (req, res) => {
         try {
             const newItem = {
-                userId: req.body.userId,
                 itemName: req.body.itemName,
                 description: req.body.description,
                 quantity: req.body.quantity

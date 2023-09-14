@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import NavBar from './NavBar';
+import NavBarLogOut from './NavBarLogOut';
 import { useEffect, useState } from 'react';
 import ItemDetails from './ItemDetails';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ export default function Inventory() {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar position="relative">
-        <NavBar />
+        <NavBarLogOut />
       </AppBar>
       <main>
         <Box
@@ -73,6 +73,21 @@ export default function Inventory() {
                   alignItems: 'center',
                 }}
               >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    mt: 2,
+                    mb: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    backgroundColor: 'blue',
+                  }}
+                  component={Link}
+                  to={`/new-game`}
+                >
+                  Add New Game
+                </Button>
               </Box>
             </Container>
           </Box>
@@ -94,6 +109,10 @@ export default function Inventory() {
                         sx={{ mt: 2, mb: 1, backgroundColor: 'green', marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory/item-details/${item.id}`}>
                         View Details
                       </Button>
+                      <Button type="submit"
+                        variant="contained"
+                        bgcolor="red"
+                        sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }} size="small">Remove</Button>
                     </CardActions>
                   </Card>
                 </Grid>

@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import NavBar from './NavBar';
+import NavBarLogOut from './NavBarLogOut';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const defaultTheme = createTheme();
@@ -35,7 +35,7 @@ export default function ItemDetails() {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar position="relative">
-        <NavBar />
+        <NavBarLogOut />
       </AppBar>
       <main>
       <Box
@@ -83,6 +83,14 @@ export default function ItemDetails() {
                 sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'green', marginRight: 'auto' }} component={Link} to={`/inventory`}>
                 Return to Game Inventory
               </Button>
+              <Button type="submit"
+                variant="contained"
+                bgcolor="orange"
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'darkorange', marginRight: 'auto' }} size="small">Edit</Button>
+              <Button type="submit"
+                variant="contained"
+                bgcolor="red"
+                sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }} size="small">Remove</Button>
             </Stack>
           </Container>
         </Box>
