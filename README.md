@@ -1,5 +1,7 @@
 # Z-Prefix-CRUD-App
 
+--- Installation ---
+
 Clone the Repository:
 - git clone https://github.com/Eric-Baldwin/Z-Prefix-CRUD-App
 
@@ -45,3 +47,11 @@ Install the necessary dependencies:
 Start the Frontend in the "gamestore" directory:
 - npm start
 (Your application should now be running on http://localhost:3000)
+
+
+--- Application Features ---
+
+
+- As a signed out user, you will be able to view a list of games in the game inventory as well as view the details of those games.
+
+ - If you sign up and sign in with your first and last name, user id, and password, you will be considered an "Inventory Manager". As an Inventory Manager, you will be able to view all games and their details, create new games, delete games, and edit games.

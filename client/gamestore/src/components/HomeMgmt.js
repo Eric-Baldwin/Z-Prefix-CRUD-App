@@ -59,7 +59,8 @@ export default function HomeMgmt() {
                   Eric Baldwin's<br></br>Z-Prefix CRUD App!
                 </Typography>
                 <Typography variant="h5" align="center" color="grey" paragraph>
-                  Please browse some of my games. <br></br> Sign in to manage the game inventory.</Typography>
+                You are an "Inventory Manager" which allows you to view, edit, and delete games in the game inventory.
+                </Typography>
                 <Stack
                   sx={{ pt: 4 }}
                   direction="row"

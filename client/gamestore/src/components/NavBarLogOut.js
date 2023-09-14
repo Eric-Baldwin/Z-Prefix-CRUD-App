@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';  // Make sure to import Typography
+import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
 
@@ -16,7 +16,7 @@ export default function NavBarLogOut() {
             <Button
               color="inherit"
               component={Link}
-              to="/"
+              to="/Mgmt"
               sx={{
                 fontSize: "30px",
                 textTransform: "none",

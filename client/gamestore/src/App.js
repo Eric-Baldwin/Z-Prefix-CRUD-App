@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import Home from './components/Home';
 import Inventory from './components/Inventory';

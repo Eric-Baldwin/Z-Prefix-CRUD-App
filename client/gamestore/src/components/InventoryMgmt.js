@@ -38,7 +38,6 @@ export default function InventoryMgmt() {
 
       if (response.ok) {
         console.log('Item removed successfully');
-        // Filter the items to exclude the deleted item
         setItems(prevItems => prevItems.filter(item => item.id !== itemId));
       } else {
         console.error('Failed to remove item.');
