@@ -14,13 +14,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NavBarLogOut from './NavBarLogOut';
 import { useEffect, useState } from 'react';
-import ItemDetails from './ItemDetails';
+import ItemDetailsMgmt from './ItemDetailsMgmt';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import NewGame from './NewGame';
 
 const defaultTheme = createTheme();
 
-export default function Inventory() {
+export default function InventoryMgmt() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -29,6 +29,24 @@ export default function Inventory() {
       .then(data => setItems(data))
       .catch(error => console.error('Error fetching items:', error));
   }, []);
+
+  const removeItem = async (itemId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/items/${itemId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('Item removed successfully');
+        // Filter the items to exclude the deleted item
+        setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+      } else {
+        console.error('Failed to remove item.');
+      }
+    } catch (error) {
+      console.error('There was an error removing the item:', error);
+    }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -106,13 +124,17 @@ export default function Inventory() {
                       <Button type="submit"
                         variant="contained"
                         bgcolor="green"
-                        sx={{ mt: 2, mb: 1, backgroundColor: 'green', marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory/item-details/${item.id}`}>
+                        sx={{ mt: 2, mb: 1, backgroundColor: 'green', marginLeft: 'auto', marginRight: 'auto' }} component={Link} to={`/inventory/item-details-mgmt/${item.id}`}>
                         View Details
                       </Button>
                       <Button type="submit"
                         variant="contained"
                         bgcolor="red"
-                        sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }} size="small">Remove</Button>
+                        sx={{ mt: 2, mb: 1, marginLeft: 'auto', backgroundColor: 'red', marginRight: 'auto' }}
+                        size="small"
+                        onClick={() => removeItem(item.id)}>
+                        Remove
+                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>

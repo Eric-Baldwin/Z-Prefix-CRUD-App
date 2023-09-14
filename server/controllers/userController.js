@@ -3,7 +3,6 @@ const knex = require('../knexConnection');
 module.exports = {
 
     createUser: async (req, res) => {
-        console.log("Request body:", req.body);
         try {
             const newUser = {
                 first_name: req.body.first_name,

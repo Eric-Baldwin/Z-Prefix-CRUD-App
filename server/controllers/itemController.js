@@ -3,9 +3,16 @@ const knex = require('../knexConnection');
 module.exports = {
 
     createItem: async (req, res) => {
+        console.log("Request body:", req.body);
         try {
+            const latestUser = await knex('users').orderBy('created_at', 'desc').first();
+            if (!latestUser) {
+                return res.status(400).json({ message: 'No users available to associate with the item' });
+            }
+
             const newItem = {
-                itemName: req.body.itemName,
+                user_id: latestUser.id,
+                item_name: req.body.item_name,
                 description: req.body.description,
                 quantity: req.body.quantity
             };

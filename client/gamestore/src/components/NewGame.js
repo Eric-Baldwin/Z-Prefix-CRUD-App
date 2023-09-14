@@ -1,19 +1,20 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import { Link } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material';
+import { LockOutlined, CasinoTwoTone } from '@mui/icons-material';
 import NavBarLogOut from './NavBarLogOut';
-import { useState } from 'react';
 import { itemAPI } from '../api.js';
-import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
 
 const defaultTheme = createTheme();
 
@@ -21,44 +22,71 @@ export default function NewGame() {
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState('');
+  const navigate = useNavigate();
+
+  const getLatestUserId = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/users');
+      const data = await response.json();
+
+      const latestUser = data.sort((a, b) => b.id - a.id)[0];
+
+      return latestUser.id;
+    } catch (error) {
+      console.error("Failed fetching the latest user:", error.message);
+      return null;
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!itemName || !description || !quantity) {
+      alert('All fields must be filled out to create a game.');
+      return;
+    }
+
+    const userId = await getLatestUserId();
+
+    if (!userId) {
+      alert('Failed to get the latest user. Please try again.');
+      return;
+    }
 
     const item = {
-      itemName,
+      item_name: itemName,
       description,
-      quantity
+      quantity: parseInt(quantity),
+      user_id: userId
     };
 
     try {
       const data = await itemAPI.create(item);
       console.log("Item creation successful:", data);
+      navigate('/inventory-mgmt');
     } catch (error) {
       console.error("Item creation failed:", error.message);
     }
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <NavBarLogOut />
       <Box component="main" sx={{ height: '69vh' }}>
         <Grid container>
-          <CssBaseline />
           <Grid
+            item
             md={7}
             lg={5}
             sx={{
               backgroundImage: 'url(https://www.theboardgamefamily.com/wp-content/uploads/2013/10/FFGEventsAbove.jpg)',
               backgroundRepeat: 'no-repeat',
-              backgroundColor: (t) =>
-                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+              backgroundColor: (t) => t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
           />
           <Container component="main" maxWidth="xs">
-            <CssBaseline />
             <Box
               sx={{
                 marginTop: 25,
@@ -68,7 +96,7 @@ export default function NewGame() {
               }}
             >
               <Avatar sx={{ m: 1, bgcolor: 'green' }}>
-                <CasinoTwoToneIcon />
+                <CasinoTwoTone />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Create a Game
@@ -95,7 +123,7 @@ export default function NewGame() {
                       required
                       fullWidth
                       id="quantity"
-                      label="Quantity"
+                      label="Quantity (1 - 1000)"
                       name="quantity"
                       autoComplete="quantity"
                     />
@@ -118,7 +146,7 @@ export default function NewGame() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    Submit Game
+                    Create Game
                   </Button>
                 </Grid>
               </Box>
@@ -148,9 +176,9 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
+      <Link to="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style={{ color: 'Blue', textDecoration: 'underline' }}>
         Baldwin's Board Games
-      </a>{' '}
+      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>

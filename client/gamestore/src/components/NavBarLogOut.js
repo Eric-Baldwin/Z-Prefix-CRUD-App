@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';  // Make sure to import Typog
 import { Link } from 'react-router-dom';
 import CasinoTwoToneIcon from '@mui/icons-material/CasinoTwoTone';
 
-export default function NavBar() {
+export default function NavBarLogOut() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'maroon' }}>
